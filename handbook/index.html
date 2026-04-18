@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夥伴分潤手則｜齊聚眾選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #0f1923;
+  color: #f0ece4;
+}
+
+/* ── 頁面容器 ── */
+.pages { width: 100%; height: 100vh; position: relative; }
+
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 40px 80px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .page {
+    justify-content: flex-start;
+    padding: 48px 24px 80px;
+  }
+  .cover-page {
+    justify-content: center;
+    padding-top: 0px;
+    margin-top: -40px;
+  }
+  .cover-page .page-text {
+    font-size: 38px !important;
+    line-height: 2.4 !important;
+    margin-top: 20px !important;
+  }
+  .cover-page .page-title {
+    font-size: 52px !important;
+  }
+  .cover-page .page-label {
+    font-size: 20px !important;
+    letter-spacing: 4px !important;
+  }
+  .cover-page .page-sub {
+    font-size: 18px !important;
+  }
+
+.pages .page:nth-child(2) {
+    padding-top: 100px;
+    font-size: 19px !important;
+  }
+  .pages .page:nth-child(2) .step-title {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(2) .step-desc {
+    font-size: 15px !important;
+  }
+  .pages .page:nth-child(2) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(2) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+
+.pages .page:nth-child(3) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(3) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(3) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(3) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(3) .gold-box {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(3) .green-box {
+    font-size: 17px !important;
+  }
+
+.pages .page:nth-child(4) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(4) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(4) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(4) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(4) .gold-box {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(4) .red-box {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(4) table {
+    font-size: 15px !important;
+  }
+
+.pages .page:nth-child(5) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(5) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(5) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(5) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(5) .level-pct {
+    font-size: 44px !important;
+  }
+  .pages .page:nth-child(5) .lv-name {
+    font-size: 14px !important;
+  }
+  .pages .page:nth-child(5) .lv-note {
+    font-size: 13px !important;
+  }
+  .pages .page:nth-child(5) .gold-box {
+    font-size: 17px !important;
+  }
+
+.pages .page:nth-child(6) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(6) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(6) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(6) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(6) table {
+    font-size: 15px !important;
+  }
+  .pages .page:nth-child(6) .gold-box {
+    font-size: 17px !important;
+  }
+
+.pages .page:nth-child(7) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(7) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(7) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(7) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(7) .step-title {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(7) .step-desc {
+    font-size: 15px !important;
+  }
+  .pages .page:nth-child(7) .green-box {
+    font-size: 17px !important;
+  }
+
+.pages .page:nth-child(8) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(8) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(8) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(8) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(8) ul.dot li {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(8) .gold-box {
+    font-size: 17px !important;
+  }
+
+.pages .page:nth-child(9) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(9) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(9) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(9) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(9) .green-box {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(9) .gold-box {
+    font-size: 17px !important;
+  }
+
+.pages .page:nth-child(10) {
+    padding-top: 80px;
+    font-size: 18px !important;
+  }
+  .pages .page:nth-child(10) .page-title {
+    font-size: 34px !important;
+  }
+  .pages .page:nth-child(10) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(10) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(10) .red-box {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(10) .gold-box {
+    font-size: 17px !important;
+  }
+
+.pages .page:nth-child(11) {
+    padding-top: 160px;
+    font-size: 24px !important;
+  }
+  .pages .page:nth-child(11) .page-title {
+    font-size: 48px !important;
+  }
+  .pages .page:nth-child(11) .page-text {
+    font-size: 23px !important;
+    line-height: 2.2 !important;
+  }
+  .pages .page:nth-child(11) .closing-sub {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(11) .page-label {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+  }
+  .pages .page:nth-child(11) .page-text {
+    font-size: 17px !important;
+  }
+  .pages .page:nth-child(11) .cover-divider {
+    margin: 16px auto !important;
+  }
+
+}
+.page.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* ── 內容寬度 ── */
+.page-inner {
+  width: 100%;
+  max-width: 640px;
+}
+
+/* ── 頁碼 ── */
+.page-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #C9A84C;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ── 大標題 ── */
+.page-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.35;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.page-title em { font-style: normal; color: #C9A84C; }
+
+/* ── 副標 ── */
+.page-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+/* ── 內文 ── */
+.page-text {
+  font-size: 16px;
+  line-height: 2;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 16px;
+}
+.page-text strong { color: #F5E6B8; }
+
+/* ── 金色框 ── */
+.gold-box {
+  background: rgba(201,168,76,0.1);
+  border: 1.5px solid rgba(201,168,76,0.4);
+  border-left: 4px solid #C9A84C;
+  padding: 18px 22px;
+  margin: 16px 0;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #F5E6B8;
+  white-space: pre-wrap;
+}
+
+/* ── 紅色框 ── */
+.red-box {
+  background: rgba(192,57,43,0.1);
+  border: 1.5px solid rgba(192,57,43,0.4);
+  border-left: 4px solid #c0392b;
+  padding: 18px 22px;
+  margin: 16px 0;
+  font-size: 15px;
+  line-height: 2;
+  color: #f5b7b1;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.red-box strong { color: #e74c3c; }
+
+/* ── 綠色框 ── */
+.green-box {
+  background: rgba(26,107,60,0.15);
+  border: 1.5px solid rgba(26,107,60,0.4);
+  border-left: 4px solid #1a6b3c;
+  padding: 18px 22px;
+  margin: 16px 0;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #a9dfbf;
+}
+
+/* ── 清單 ── */
+ul.dot { list-style: none; margin: 12px 0; }
+ul.dot li {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.9;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+}
+ul.dot li::before { content: '▸'; color: #C9A84C; position: absolute; left: 0; }
+
+/* ── 步驟 ── */
+.step-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: flex-start;
+}
+.step-n {
+  background: #C9A84C;
+  color: #0f1923;
+  font-weight: 900;
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-body {}
+.step-title { font-size: 15px; font-weight: 700; color: #F5E6B8; margin-bottom: 4px; }
+.step-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+
+/* ── 分潤卡片 ── */
+.level-row {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+.lv {
+  flex: 1;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 12px;
+  text-align: center;
+  border-radius: 4px;
+}
+.lv.gold { border-color: #C9A84C; background: rgba(201,168,76,0.08); }
+.lv-icon { font-size: 24px; margin-bottom: 8px; }
+.lv-name { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 6px; letter-spacing: 1px; }
+.lv-pct { font-family: 'Noto Serif TC', serif; font-size: 36px; font-weight: 900; color: #C9A84C; line-height: 1; }
+.lv-pct span { font-size: 16px; }
+.lv-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 8px; line-height: 1.6; }
+
+/* ── 表格 ── */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+thead th { background: rgba(201,168,76,0.15); color: #C9A84C; padding: 10px 14px; text-align: left; font-size: 12px; letter-spacing: 1px; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.07); color: rgba(255,255,255,0.7); vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+.r { color: #e74c3c; }
+.g { color: #27ae60; }
+.y { color: #C9A84C; font-weight: 700; }
+
+/* ── 底部導航 ── */
+#nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(transparent, rgba(15,25,35,0.98));
+  z-index: 100;
+}
+.nav-btn {
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: #C9A84C;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { background: rgba(201,168,76,0.15); }
+.nav-btn:disabled { opacity: 0.2; cursor: default; }
+.nav-btn.next { background: #C9A84C; color: #0f1923; border-color: #C9A84C; }
+.nav-btn.next:hover { background: #ddb94e; }
+
+/* ── 進度點 ── */
+#dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+ul.dot li {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.9;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+}
+  cursor: pointer;
+}
+.dot.active { background: #C9A84C; transform: scale(1.4); }
+
+/* ── 封面特殊樣式 ── */
+.cover-page { background: radial-gradient(ellipse at center, #1a2a3a 0%, #0f1923 70%); }
+.cover-page .page-title { font-size: 42px; }
+.cover-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  margin: 24px auto;
+}
+
+/* ── 手機 ── */
+@media (max-width: 480px) {
+  .page { padding: 32px 24px 80px; }
+  .page-title { font-size: 26px; }
+  .lv-pct { font-size: 28px; }
+  .cover-page .page-title { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="pages" id="pages">
+
+  <!-- ── 封面 ── -->
+  <div class="page cover-page active" data-page="0">
+    <div class="page-inner" style="text-align:center">
+      <div class="page-label">齊聚眾選 · 分潤小組</div>
+      <div class="page-title">夥伴<em>分潤手則</em></div>
+      <div class="cover-divider"></div>
+      <div class="page-sub">你需要知道的事，全在這裡</div>
+      <div class="page-text" style="text-align:center; margin-top:8px;">
+        每一篇發出去的貼文，<br>都是未來的<strong> 被動收入種子</strong>。
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 每天做什麼 ── -->
+  <div class="page" data-page="1">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 01 · 每天要做什麼</div>
+      <div class="page-title">五個步驟<br><em>15分鐘完成</em></div>
+      <div class="step-row">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <div class="step-title">掌握自己每天的成績趨向</div>
+          <div class="step-desc">利用預測清單 當作文案材料</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <div class="step-title">打開 Perplexity.ai 網頁版</div>
+          <div class="step-desc"> 利用成績清單內的隨便一個場次 當作文案目標</div>
+          <div class="step-desc">輸入：「用文字敘述給我今天（隊伍A）跟（隊伍B）比賽的精彩過程」</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <div class="step-title">挑一段有感覺的內容</div>
+          <div class="step-desc">不用全部複製，挑最精彩的一個段落就好</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">4</div>
+        <div class="step-body">
+          <div class="step-title">加一句自己的話，配截圖發文</div>
+          <div class="step-desc">一句感受，讓貼文從新聞變成你的故事</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">5</div>
+        <div class="step-body">
+          <div class="step-title">發布貼文後 等待文章跑起來</div>
+          <div class="step-desc">文案跑起來後 利用樓中樓植入專屬網址</div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid rgba(201,168,76,0.3); margin:24px 0;"></div>
+
+      <div class="page-label" style="margin-bottom:12px;">互推篇 · 夥伴互相留言</div>
+      <div class="step-row">
+        <div class="step-n">6</div>
+        <div class="step-body">
+          <div class="step-title">去夥伴的貼文，打開 Perplexity.ai</div>
+          <div class="step-desc">把夥伴的貼文內容貼進去，輸入：「針對這則運彩比賽內容，<br>幫我生成一則自然的留言，語氣像球迷聊天，不超過50字」</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">7</div>
+        <div class="step-body">
+          <div class="step-title">挑一則，加一句自己的話，貼進留言</div>
+          <div class="step-desc">不要直接複製，加一點自己的感受，<br>每個人的留言內容都不一樣，FB才不會判定為重複行為</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">8</div>
+        <div class="step-body">
+          <div class="step-title">你幫夥伴推文，夥伴就幫你推文</div>
+          <div class="step-desc">讓文章積攢活絡的留言內容，<br>FB判定這篇文章有價值，才能有效推流<br>讓你的專屬網址有效被看見</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 實戰範例 ── -->
+  <div class="page" data-page="2">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 01 · 實戰範例</div>
+      <div class="page-title"><em>勇士 vs 快艇</em><br>這樣寫就對了</div>
+      <div class="page-text">Perplexity給你的內容（你挑一段）譬如：</div>
+      <div class="gold-box">快艇上半場61比53領先，末節勇士爆發43比32，
+Curry全場35分，三分命中率46%主宰比賽。</div>
+      <div class="page-text">加上你的感受重述 如：</div>
+      <div class="green-box">✅
+
+快艇首節還能贏9分，到底在搞什麼，能輸掉這次的附加賽。
+<br>還好我昨天就覺得勇士甜，想不到還倒贏快艇 😅</div>
+      <div class="page-text" style="margin-top:16px; font-size:14px; color:rgba(255,255,255,0.5);">AI負責比賽內容，你負責感受。<br>一句話讓整篇活起來，FB就會幫你推。</div>
+    </div>
+  </div>
+
+  <!-- ── 發文前審查 ── -->
+  <div class="page" data-page="3">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 01 · 發文前必做</div>
+      <div class="page-title">發出去之前<br><em>刪掉這些詞</em></div>
+      <div class="page-text">文案寫完後，檢查有沒有這些字眼，有就刪掉：</div>
+      <div class="red-box"><strong>必須刪掉：</strong>
+選受讓、跟注、下注、押、賠率、讓分、開盤、賭</div>
+      <table>
+        <thead><tr><th>❌ 刪之前</th><th>✅ 刪之後</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="r">「還好我覺得勇士受讓甜，所以選受讓」</td>
+            <td class="g">「還好我昨天就覺得勇士甜」</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="green-box">刪掉之後意思完全不變。
+讀者自然懂你在說什麼，
+但FB只看到你在聊比賽。</div>
+    </div>
+  </div>
+
+  <!-- ── 分潤制度 ── -->
+  <div class="page" data-page="4">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 02 · 分潤機制</div>
+      <div class="page-title">你能賺多少？<br><em>三階制度</em></div>
+      <div class="level-row">
+        <div class="lv">
+          <div class="lv-icon">🌱</div>
+          <div class="lv-name">初階</div>
+          <div class="lv-pct">30<span>%</span></div>
+          <div class="lv-note">所有人的起點<br>版大帶著走</div>
+        </div>
+        <div class="lv">
+          <div class="lv-icon">⚡</div>
+          <div class="lv-name">中階</div>
+          <div class="lv-pct">50<span>%</span></div>
+          <div class="lv-note">月排名獎勵<br>數據成長中</div>
+        </div>
+        <div class="lv gold">
+          <div class="lv-icon">🔥</div>
+          <div class="lv-name">高階</div>
+          <div class="lv-pct">70<span>%</span></div>
+          <div class="lv-note">完全自主<br>目標等級</div>
+        </div>
+      </div>
+      <div class="gold-box">每月自動計算你的綜合評分，決定分潤加碼：
+
+🏅 FB社團貢獻值
+　　佔評分比重 40%　←　你在社團有多活躍
+
+🔗 專屬連結點擊率
+　　佔評分比重 30%　←　你的文案吸引多少人點擊
+
+💰 促成交易量
+　　佔評分比重 30%　←　多少實際訂閱成交
+
+三項加起來 = 你當月的總評分 = 決定你的分潤加碼</div>
+    </div>
+  </div>
+
+  <!-- ── 月排名獎勵 ── -->
+  <div class="page" data-page="5">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 02 · 月排名獎勵</div>
+      <div class="page-title">排名越前面<br><em>拿得越多</em></div>
+      <table>
+        <thead><tr><th>當月排名</th><th>分潤加碼</th><th>實際分潤</th></tr></thead>
+        <tbody>
+          <tr><td class="y">前 3 名</td><td class="y">+20%</td><td class="y">30% → 50%</td></tr>
+          <tr><td>第 4–10 名</td><td>+10%</td><td>30% → 40%</td></tr>
+          <tr><td>第 11 名後</td><td>—</td><td>維持 30%</td></tr>
+        </tbody>
+      </table>
+      <div class="gold-box">✅ 分潤加權只增不降
+
+這個機制只有一個目的：
+
+提早熟悉流程 進入運作邏輯，
+讓你的專屬分潤網址 能有效被推流。</div>
+
+      <div style="border-top:1px solid rgba(201,168,76,0.3); margin:20px 0;"></div>
+
+      <div class="gold-box">💰 撥款方式
+
+當日成交訂閱 → 當日撥款 30%
+
+月底綜合評分結算後，
+再撥款 分潤加碼餘額 10%～40%</div>
+    </div>
+  </div>
+
+  <!-- ── 跳級條件 ── -->
+  <div class="page" data-page="6">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 02 · 額外跳級</div>
+      <div class="page-title">想直接跳到<em> 70%</em>？<br>同時做到這三點</div>
+      <div class="step-row">
+        <div class="step-n">①</div>
+        <div class="step-body">
+          <div class="step-title">貼文常態觸及300人以上</div>
+          <div class="step-desc">不是偶爾一次，是每次都能通過FB的第一關篩選</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">②</div>
+        <div class="step-body">
+          <div class="step-title">懂得樓中樓有效回應並植入連結</div>
+          <div class="step-desc">自然、不突兀、不像廣告，有真實的互動脈絡</div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">③</div>
+        <div class="step-body">
+          <div class="step-title">整套流程完全獨立操作</div>
+          <div class="step-desc">從取材、生成文案、發文到樓中樓，不需要版大協助</div>
+        </div>
+      </div>
+      <div class="green-box">✅ 立即獲得 70% 分潤</div>
+      <div class="green-box">✅ 版大手把手教你經營「脆」<br>開拓FB以外的第二條推廣管道</div>
+    </div>
+  </div>
+
+  <!-- ── FB邏輯 ── -->
+  <div class="page" data-page="7">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 03 · FB機制</div>
+      <div class="page-title">FB不是佈告欄<br><em>是它正在篩選你</em></div>
+      <div class="page-text">你的貼文發出去，不是所有人都看得到。<br>FB先給少數人看，觀察反應，再決定要不要繼續推。</div>
+      <div class="gold-box">就算社團有13,000人，
+FB也可以讓你的貼文只有50人看到。
+這不是Bug，這是FB的商業模式。</div>
+      <div class="page-text" style="margin-top:16px;">FB在看這五件事：</div>
+      <ul class="dot">
+        <li>有沒有人<strong>停下來看</strong>（不是滑過去）</li>
+        <li>有沒有人<strong>留言說了什麼</strong>（按讚不夠）</li>
+        <li>留言區有沒有<strong>繼續對話</strong>（樓中樓最強）</li>
+        <li>有沒有<strong>廣告詞</strong>（有就直接降權）</li>
+        <li>有沒有在貼文裡<strong>直接放連結</strong>（放了就降觸及）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 為何只講比賽 ── -->
+  <div class="page" data-page="8">
+    <div class="page-inner">
+      <div class="page-label">CHAPTER 03 · 為什麼只講比賽</div>
+      <div class="page-title"></em>主文只講比賽內容</em></div>
+      <div class="page-text">貼文只講比賽，FB就會把我們的社團定性為<strong>運動討論社團</strong>。</div>
+      <div class="gold-box">一旦被定性，
+FB會主動把你的內容推給對運動有興趣的人。
+這些人，正是我們的精準受眾。</div>
+      <div class="green-box">✅ 主文只有比賽內容
+= FB認定這是運動討論
+= 自動推給對的人看
+
+<br>✅ 連結只在樓中樓裡帶出
+= 不觸發廣告偵測
+= 觸及率不被降權</div>
+      <div class="page-text" style="margin-top:12px; font-size:14px; color:rgba(255,255,255,0.5);">FB幫你推的內容，是看起來像朋友在聊天的內容。<br>不是廣告、不是業配——是有情緒、有故事的真實分享。</div>
+    </div>
+  </div>
+
+  <!-- ── 禁止：私訊 ── -->
+  <div class="page" data-page="9" style="justify-content:flex-start; padding-top:32px;">
+    <div class="page-inner">
+      <div class="page-label">⛔ 紅線 · 絕對禁止</div>
+      <div class="page-title" style="color:#e74c3c; font-size:24px;">私訊不能當傳單功能<br>FB會直接封你的號</div>
+      <div class="red-box"><strong>就算互加好友，只要對方檢舉，一樣封號。</strong>
+
+FB有一套自動偵測系統，專門掃描這個行為：
+「短時間內，向多人傳送相似的訊息或連結」
+
+不管對方是不是你的好友，FB一視同仁。
+它偵測的是你的發送行為模式，不是你跟對方的關係。
+
+一旦觸發，後果依嚴重程度：
+第一次被檢舉 → 7天無法發言、留言、發文
+系統自動偵測 → 帳號功能陸續被鎖，要求身份驗證
+同裝置兩個帳號 → 兩號同時被標記，嚴重者雙號封停
+累犯 → 永久封號，多年經營歸零</div>
+      <div class="gold-box">如果朋友問你，這樣說：
+
+「你去我們社團搜尋（社團名稱），
+我都在那邊分享。」
+
+把人導進社團，不要把連結導進私訊。</div>
+    </div>
+  </div>
+
+  <!-- ── 結語 ── -->
+  <div class="page" data-page="10">
+    <div class="page-inner" style="text-align:center">
+      <div class="page-label">就這樣，開始吧</div>
+      <div class="page-title">懂規則的人<br><em><span style="color:#ffffff;">先享受</span> 尚未被開發的資源</em></div>
+      <div class="cover-divider"></div>
+      <div class="page-text" style="text-align:center; margin-top:8px;">
+        幫自己打造新的被動收入。<br>
+        照著流程走，分潤自然來。
+      </div>
+      <div style="margin-top:32px; font-size:12px; color:rgba(255,255,255,0.2); letter-spacing:3px;">
+        積極 · 活絡 · 照規則走
+      </div>
+    </div>
+  </div>
+
+</div><!-- end pages -->
+
+<!-- ── 導航 ── -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>← 上一頁</button>
+  <div id="dots"></div>
+  <button class="nav-btn next" id="nextBtn" onclick="changePage(1)">下一頁 →</button>
+</div>
+
+<script>
+const totalPages = document.querySelectorAll('.page').length;
+let current = 0;
+
+// 建立進度點
+const dotsEl = document.getElementById('dots');
+for (let i = 0; i < totalPages; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n) {
+  document.querySelectorAll('.page')[current].classList.remove('active');
+  document.querySelectorAll('.dot')[current].classList.remove('active');
+  current = n;
+  document.querySelectorAll('.page')[current].classList.add('active');
+  document.querySelectorAll('.dot')[current].classList.add('active');
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === totalPages - 1;
+  document.getElementById('nextBtn').textContent = current === totalPages - 1 ? '完成 ✓' : '下一頁 →';
+}
+
+function changePage(dir) {
+  const next = current + dir;
+  if (next >= 0 && next < totalPages) goTo(next);
+}
+
+// 鍵盤控制
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changePage(1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changePage(-1);
+});
+
+// 觸控滑動已停用
+</script>
+</body>
+</html>
